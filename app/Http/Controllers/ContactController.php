@@ -14,11 +14,13 @@ class ContactController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'nom' => 'bail|required|between:5,20|alpha',
             'email' => 'bail|required|email',
-            'message' => 'bail|required|max:250'
+            'message' => 'bail|required|max:500'
         ]);
- 
-        return view('confirm');
+        $contact = new \App\Models\Contact;
+        $contact->email = $request->email;
+        $contact->message = $request->message;
+        $contact->save();
+        return "C'est bien enregistré !";
     }
 }
