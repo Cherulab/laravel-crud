@@ -17,10 +17,10 @@ class ContactController extends Controller
             'email' => 'bail|required|email',
             'message' => 'bail|required|max:500'
         ]);
-        $contact = new \App\Models\Contact;
-        $contact->email = $request->email;
-        $contact->message = $request->message;
-        $contact->save();
+        // Methode create qui remplace l'ancienne methode -> Model contact
+        // Par sécurité ce type d’assignement de masse (on transmet directement 
+        // un tableau de valeurs issues du client avec la méthode create
+        dd(\App\Models\Contact::create ($request->all ()));
         return "C'est bien enregistré !";
     }
 }

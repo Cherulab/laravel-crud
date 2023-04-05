@@ -23,3 +23,5 @@ Route::post('photo', [PhotoController::class, 'store']);
 Route::get('facture/{n}', function($n) {
     return view('facture')->with('numero', $n);
 })->where('n', '[0-9]+');
+// CRUD pour les films
+Route::resource('films', FilmController::class);
