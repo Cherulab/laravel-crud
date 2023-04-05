@@ -5,6 +5,7 @@ use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\UsersController; 
 use App\Http\Controllers\ContactController;  
 use App\Http\Controllers\PhotoController;
+use App\Http\Controllers\FilmController;
 
 // Home
 Route::get('/', [WelcomeController::class, 'index']);
@@ -25,3 +26,8 @@ Route::get('facture/{n}', function($n) {
 })->where('n', '[0-9]+');
 // CRUD pour les films
 Route::resource('films', FilmController::class);
+// Confirmation de supression
+Route::controller(FilmController::class)->group(function () {
+    Route::delete('films/force/{film}', 'forceDestroy')->name('films.force.destroy');
+    Route::put('films/restore/{film}', 'restore')->name('films.restore');
+});
