@@ -11,18 +11,18 @@ class ContactController extends Controller
     public function custom_id_1()
     {
         $contacts = Contact::all()->where('customer_id', 1);
-        $customers = Contact::all()->where('customer_id', 2);
+        
  
-        return view('contact', ['contacts' => $contacts, 'customers' => $customers]);
+        return view('contact', ['contacts' => $contacts]);
     }
     
-    // public function custom_id_2()
-    // {
-    //     $contacts = Contact::all()->where('customer_id', 1);
-    //     $customers = Contact::all()->where('customer_id', 2);
+    public function custom_id_2()
+    {
+     
+        $customers = Contact::all()->where('customer_id', 2);
  
-    //     return view('contact2', ['contacts' => $contacts]);
-    // }
+        return view('contact2', ['customers' => $customers]);
+    }
     // public function create()
     // {
     //     return view('contact');

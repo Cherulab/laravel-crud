@@ -16,7 +16,7 @@ Route::get('users', [UsersController::class, 'create']);
 Route::post('users', [UsersController::class, 'store']);
 // Systeme de contact
 Route::get('contact', [ContactController::class, 'custom_id_1'])->name('contact.custom_id_1');
-
+Route::get('contact2', [ContactController::class, 'custom_id_2'])->name('contact2.custom_id_2');
 // Route::get('contact', [ContactController::class, 'custom_id_2'])->name('contact.custom_id_2');
 // Route::get('contact', [ContactController::class, 'custom_id_2']);
 // Route::get('contact', [ContactController::class, 'custom_id_2'])->name('contact.custom_id_2');
