@@ -14,4 +14,13 @@ class UsersController extends Controller
     {
         return view('info');
     }
+    public function company()
+    {
+        return view('company');
+    }
+    public function company_store(Request $request)
+    {
+        // Film::create($filmRequest->all());
+        // return redirect()->route('films.index')->with('info', 'Le film a bien été créé');
+    }
 }

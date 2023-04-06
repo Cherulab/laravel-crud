@@ -14,6 +14,9 @@ Route::get('/article/{n}', [ArticleController::class, 'show'])->where('n', '[0-9
 // Utilisateur
 Route::get('users', [UsersController::class, 'create']);
 Route::post('users', [UsersController::class, 'store']);
+// test de company et agence relation
+Route::get('company', [UsersController::class, 'company']);
+Route::post('company', [UsersController::class, 'company_store']);
 // Systeme de contact
 Route::get('contact', [ContactController::class, 'create'])->name('contact.create');;
 Route::post('contact', [ContactController::class, 'store'])->name('contact.store');;
