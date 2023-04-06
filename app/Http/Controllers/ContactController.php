@@ -2,21 +2,35 @@
 
 namespace App\Http\Controllers;
 use App\Http\Requests\ContactRequest;
+use App\Models\Contact;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
-    public function create()
+
+    public function custom_id_1()
     {
-        return view('contact');
+        $contacts = Contact::all()->where('customer_id', 1);
+        $customers = Contact::all()->where('customer_id', 2);
+ 
+        return view('contact', ['contacts' => $contacts, 'customers' => $customers]);
     }
+    
+    // public function custom_id_2()
+    // {
+    //     $contacts = Contact::all()->where('customer_id', 1);
+    //     $customers = Contact::all()->where('customer_id', 2);
+ 
+    //     return view('contact2', ['contacts' => $contacts]);
+    // }
+    // public function create()
+    // {
+    //     return view('contact');
+    // }
  
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'email' => 'bail|required|email',
-            'message' => 'bail|required|max:500'
-        ]);
+        
         // Methode create qui remplace l'ancienne methode -> Model contact
         // Par sécurité ce type d’assignement de masse (on transmet directement 
         // un tableau de valeurs issues du client avec la méthode create

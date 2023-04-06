@@ -3,26 +3,15 @@
     <br>
     <div class="container">
         <div class="row card text-white bg-dark">
-            <h4 class="card-header">Novanea</h4>
+            <h4 class="card-header">Ubisoft</h4>
             <div class="card-body">
                 @foreach ($contacts as $contact)
                     <h1>{{$contact->contact_name}}</h1>
                     <p>{{$contact->phone}}</p>
                     <p>{{$contact->email}}</p>
-                    <p>{{$contact->customer_name}}</p>
                 @endforeach
-                
-                @if($contacts->contact_id === 2)
-                    {
-                        @foreach ($customers as $customer)
-                        <h1>{{$customer->contact_name}}</h1>
-                        @endforeach 
-                    }
-                    @else{
-                    <h1>Nothing</h1>
-                    }
-                @endif
-             
+         
+                <a href="{{ route('contact.custom_id_1') }}">Novanea Users</a>
                 {{-- <a href="{{ route('contact.custom_id_2') }}">Ubisoft</a> --}}
                 {{-- {{ route('films.create') }} --}}
                 {{-- <form action="{{ route('contact.index') }}" method="GET">
