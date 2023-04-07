@@ -1,32 +1,36 @@
 <?php
-use App\Http\Controllers\ArticleController;
+
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\WelcomeController;
-use App\Http\Controllers\UsersController; 
-use App\Http\Controllers\ContactController;  
-use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\FilmController;
 
-// Home
-Route::get('/', [WelcomeController::class, 'index']);
-// Articles
-Route::get('/article/{n}', [ArticleController::class, 'show'])->where('n', '[0-9]+');
-// Utilisateur
-Route::get('users', [UsersController::class, 'create']);
-Route::post('users', [UsersController::class, 'store']);
-// test de company et agence relation
-Route::get('company', [UsersController::class, 'company']);
-Route::post('company', [UsersController::class, 'company_store']);
-// Systeme de contact
-Route::get('contact', [ContactController::class, 'create'])->name('contact.create');;
-Route::post('contact', [ContactController::class, 'store'])->name('contact.store');;
-// Systeme ajout photo
-Route::get('photo', [PhotoController::class, 'create']);
-Route::post('photo', [PhotoController::class, 'store']);
-// Systeme de facture
-Route::get('facture/{n}', function($n) {
-    return view('facture')->with('numero', $n);
-})->where('n', '[0-9]+');
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "web" middleware group. Make something great!
+|
+*/
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';
+
 // CRUD pour les films
 Route::resource('films', FilmController::class);
 // Confirmation de supression

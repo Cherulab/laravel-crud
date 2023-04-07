@@ -9,10 +9,6 @@
     @yield('css')
   </head>
   <body>
-    <main class="section">
-        <div class="container">
             @yield('content')
-        </div>
-    </main>
   </body>
 </html>

@@ -12,7 +12,7 @@ class FilmController extends Controller
      */
     public function index()
     {
-        $films = Film::withTrashed()->oldest('title')->paginate(5);
+        $films = Film::withTrashed()->oldest('title')->paginate(10);
         return view('index', compact('films'));
     }
 

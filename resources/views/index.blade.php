@@ -14,22 +14,26 @@
 @endsection
 
 @section('content')
+{{-- Notification --}}
     @if(session()->has('info'))
         <div class="notification is-success">
             {{ session('info') }}
         </div>
     @endif
-    <div class="card">
-        <header class="card-header">
-            <p class="card-header-title">Films</p>
+    <x-app-layout class="card">
+        <x-slot name="header">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                {{ __('Films') }}
+            </h2>
+            {{-- Route Creation Film --}}
             <a class="button is-info" href="{{ route('films.create') }}">Créer un film</a>
-        </header>
+        </x-slot>
         <div class="card-content">
             <div class="content">
+                
                 <table class="table is-hoverable">
                     <thead>
                         <tr>
-                            
                             <th>Titre</th>
                             <th></th>
                             <th></th>
@@ -73,5 +77,5 @@
         <footer class="card-footer is-centered">
             {{ $films->links() }}
         </footer>
-    </div>
+    </x-app-layout>
 @endsection
