@@ -24,6 +24,7 @@ require __DIR__.'/auth.php';
 Route::resource('films', FilmController::class);
 // Confirmation de supression
 Route::controller(FilmController::class)->group(function () {
+    Route::get('category/{slug}/films', 'index')->name('films.category');
     Route::delete('films/force/{film}', 'forceDestroy')->name('films.force.destroy');
     Route::put('films/restore/{film}', 'restore')->name('films.restore');
 });
