@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Database\Eloquent\Collection;
 use App\Models\Film;
+use App\Http\Resources\Film as FilmResource;
 
 class FilmController extends Controller
 {
@@ -33,7 +34,7 @@ class FilmController extends Controller
      */
     public function show(Film $film)
     {
-        return $film;
+        return new FilmResource($film);
     }
 
     /**
